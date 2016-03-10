@@ -126,8 +126,26 @@ class TodoList
     each { |todo| todo.done! }
   end
 
+  def done!
+    mark_all_done
+  end
+
   def mark_all_undone
     each { |todo| todo.undone! }
+  end
+
+  def to_s
+    text = "---- #{title} ----\n"
+    text << @todos.map(&:to_s).join("\n")
+    text
+  end
+
+  def to_a
+    @todos
+  end
+
+  def done?
+    @todos.all? { |todo| todo.done? }
   end
 end
 
